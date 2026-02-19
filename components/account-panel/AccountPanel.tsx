@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Account, Transaction } from "@/lib/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { X, TrendingIn, TrendingOut, AlertTriangle, Flag } from "lucide-react";
+import { X, TrendingIn, TrendingOut, AlertTriangle, Flag, ChevronDown, ChevronUp } from "lucide-react";
 import { formatCurrency, formatNumber } from "@/lib/utils";
+import { WhyFlagged } from "./WhyFlagged";
 
 interface AccountPanelProps {
   account: Account;
@@ -21,6 +22,7 @@ export function AccountPanel({
   onWhitelist,
 }: AccountPanelProps) {
   const [showDetail, setShowDetail] = useState(false);
+  const [showExplanation, setShowExplanation] = useState(false);
 
   const incomingTx = transactions.filter((t) => t.receiver_id === account.id);
   const outgoingTx = transactions.filter((t) => t.sender_id === account.id);
@@ -122,6 +124,24 @@ export function AccountPanel({
               </p>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Why Flagged Explanation */}
+        <div className="border-t border-border pt-4">
+          <button
+            onClick={() => setShowExplanation(!showExplanation)}
+            className="w-full flex items-center justify-between mb-3 hover:text-foreground transition-colors text-muted-foreground"
+          >
+            <p className="text-xs uppercase font-semibold">Why Flagged?</p>
+            {showExplanation ? (
+              <ChevronUp className="w-4 h-4" />
+            ) : (
+              <ChevronDown className="w-4 h-4" />
+            )}
+          </button>
+          {showExplanation && (
+            <WhyFlagged account={account} />
+          )}
         </div>
 
         {/* Detected Patterns */}

@@ -230,6 +230,11 @@ export default function Dashboard() {
               <AlertEngine insights={analysis.insights} />
             </TabsContent>
 
+            {/* Architecture Tab */}
+            <TabsContent value="architecture" className="space-y-6">
+              <ArchitectureView />
+            </TabsContent>
+
             {/* Timeline Tab - Investigator Mode */}
             {investigatorMode && (
               <TabsContent value="timeline" className="space-y-6">

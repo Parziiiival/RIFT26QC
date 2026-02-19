@@ -22,6 +22,16 @@ A sophisticated, interactive fraud detection and investigation system with real-
 - **Risk Scoring**: Multi-factor risk assessment based on activity, volume, and patterns
 - **Visual Theme**: Dark cybersecurity-themed design optimized for fraud investigation
 - **Responsive Design**: Works seamlessly on desktop and tablet devices
+- **Tabbed Investigation Interface**: 
+  - **Overview**: Dashboard with key metrics
+  - **Interactive Graph**: Cytoscape visualization with filters and timeline
+  - **Fraud Rings**: Comprehensive ring analysis table
+  - **Accounts**: Sortable suspicious accounts list
+  - **Insights**: Auto-generated alerts by severity
+  - **Advanced**: Raw data, JSON export, system metadata
+- **Deep Account Investigation**: Side panel with full account history, pattern membership, and risk breakdown
+- **Graph Controls**: Real-time filtering by risk score, amount, and pattern type
+- **Timeline Playback**: Animate transactions chronologically to understand fraud evolution
 
 ## Tech Stack
 
@@ -50,7 +60,8 @@ app/
 │   ├── accounts/            # Account detail endpoints
 │   ├── insights/            # Alert generation
 │   └── whitelist/           # Account whitelisting
-├── dashboard/               # Main analysis dashboard
+├── investigation/           # Main investigation & analysis page
+├── dashboard/               # Legacy dashboard (redirects)
 ├── page.tsx                 # Landing/upload page
 └── layout.tsx               # Root layout
 
@@ -106,8 +117,10 @@ yarn dev
 
 1. Click "Download Sample" on the home page
 2. Upload the generated CSV file
-3. Wait for analysis to complete
-4. Explore the interactive visualizations
+3. System validates data and shows quality score
+4. Click "Analyze" to process transactions
+5. Automatic redirect to investigation page
+6. Explore six tabs: Overview, Graph, Rings, Accounts, Insights, Advanced
 
 ### CSV Format
 
